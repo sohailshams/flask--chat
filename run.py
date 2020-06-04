@@ -6,14 +6,15 @@ messages = []
 
 
 def add_messages(username, message):
-    """ the curly brackets left empty as its option to put 0 and 1 respectively """
+    """empty curly brackets will be read as \n
+    having 0 and 1 arguments respectively """ 
     messages.append("{}: {}".format(username, message))
 
 
 @app.route('/')
 def index():
     """ Main page with instructions """
-    return "To send a message use/USERNAME/MESSAGE"
+    return "To send a message use: /USERNAME/MESSAGE"
 
 
 @app.route('/<username>')
@@ -26,7 +27,6 @@ def user(username):
 def send_message(username, message):
     """ Create a new message and redirect back to the chat page """
     return "{0}: {1}".format(username, message)
-
 
 
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)
